@@ -1,14 +1,9 @@
-# Run file from command with the ability to give 2 argument
-# ...
-# first arg = base folder with img 'Pokemon's'
-# second arg = new folder with converted img 'convertedImg'
-# ...
-# 1. Grab first and second argument
-# 2. Check if new folder exist / if not create it
-# 3. Convert img to png / save them to new folder
-
 import pathlib
+import re
+
 from pathlib import Path
+from PIL import Image
+from os import walk
 
 # frm_folder = sys.argv[1]
 # in_folder = sys.argv[2]
@@ -25,14 +20,36 @@ def folder_creator(from_dir, into_dir):
         print('please enter right from_folder name or check if exist')
     elif fr_dir_exist and not in_dir_exist:
         pathlib.Path(f'./{into_dir}').mkdir(parents=True, exist_ok=True)
+    if fr_dir_exist and in_dir_exist:
+        return True
+
+folder_creator(frm_folder, in_folder)
+
+
+def imgConverter():
+
+    # getting all the file names in folder
+    _, _, filenames = next(walk(f'./{frm_folder}'))
+    regex = r".jpg+$"
+    isJpg = re.search(regex, filenames[0])
+
+    for pic in filenames:
+        im = Image.open(f'./{frm_folder}/{pic}')
+        im.save(f'./{in_folder}/{pic[:-4]}.png')
+
+    # for pic in range(len(filenames)):
+    #     im = Image.open(f'./{frm_folder}/{pic}')
+    #     yield im.save(f'./{in_folder}/{pic[:-4]}.png')
+
+    # checking them for .jpg format
+    if isJpg != None:
+        print('converting [0] img')
     else:
-        if fr_dir_exist and in_dir_exist:
-            print(True)
+        print('[0] is not .jpg')
 
 
-def do_twice(func):
-    func(frm_folder, in_folder)
-    func(frm_folder, in_folder)
 
 
-do_twice(folder_creator)
+
+imgConverter()
+
