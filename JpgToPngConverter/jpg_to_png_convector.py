@@ -7,11 +7,12 @@ from pathlib import Path
 from PIL import Image
 from os import walk
 
-# frm_folder = sys.argv[1]
-# in_folder = sys.argv[2]
+# from_dir = sys.argv[1]
+# into_dir = sys.argv[2]
 
-from_dir = 'pic'
-into_dir = 'new_folder'
+# Use it in case running without parameters
+from_dir = 'source_pic'
+into_dir = 'converted'
 
 
 class Convertor:
@@ -20,24 +21,25 @@ class Convertor:
         self.into_dir = in_folder
 
     def folder_creator(self):
-        fr_dir_exist = Path(self.from_dir).is_dir()
-        in_dir_exist = Path(self.into_dir).is_dir()
+        source_dir_exist = Path(self.from_dir).is_dir()
+        converted_dir_exist = Path(self.into_dir).is_dir()
 
-        if not fr_dir_exist:
-            fr_dir_message = 'please enter right from_folder name or check if exist'
-            print(fr_dir_message)
-            return fr_dir_message
+        if not source_dir_exist:
+            dir_not_found_message = 'please enter right from_folder name or check if exist'
+            print(dir_not_found_message)
+            return dir_not_found_message
 
-        elif fr_dir_exist and not in_dir_exist:
+        elif source_dir_exist and not converted_dir_exist:
             pathlib.Path(f'./{self.into_dir}').mkdir(parents=True, exist_ok=True)
-            print(f'{self.into_dir} created')
-
+            print(f'\n{self.into_dir} folder created')
             return 'folder created'
-        if fr_dir_exist and in_dir_exist:
+        if source_dir_exist and converted_dir_exist:
             return True
 
-    @staticmethod
-    def imgConverter():
+
+    def imgConverter(self):
+        self.folder_creator()
+
         # getting all the file names in folder
         _, _, filenames = next(walk(f'./{from_dir}'))
 
@@ -45,26 +47,24 @@ class Convertor:
         for pic in filenames:
             t2 = time.time()
 
-            # checking them for .jpg format
+            # verify that picture has .jpg format
             regex = r".jpg+$"
             is_jpg = re.search(regex, pic)
 
             if is_jpg is not None:
-                # print(f'\nconverting... {pic}')
+                # converting picture
                 im = Image.open(f'./{from_dir}/{pic}')
                 im.save(f'./{into_dir}/{pic[:-4]}.png')
             else:
                 print(f'{pic} is not .jpg file')
             t3 = time.time()
-            total = '%.2f' % (t3 - t2)
-            print(f'{pic} converted time: {total} seconds')
+            total_pic = '%.2f' % (t3 - t2)
+            print(f'{pic} converted time: {total_pic} seconds')
 
         t1 = time.time()
-        total = '%.2f' % (t1 - t0)
+        total_all_pictures = '%.2f' % (t1 - t0)
 
-        print(f'\ntotal converted for: {total} seconds')
+        print(f'\ntotal converted time {total_all_pictures} seconds')
 
 
-c = Convertor(from_dir, into_dir)
-c.folder_creator()
-c.imgConverter()
+Convertor(from_dir, into_dir).imgConverter()
