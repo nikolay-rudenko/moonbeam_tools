@@ -9,8 +9,8 @@ from PIL import Image
 from os import walk
 
 
-# from_dir = sys.argv[1]
-# into_dir = sys.argv[2]
+from_dir = sys.argv[1]
+into_dir = sys.argv[2]
 
 # Use it in case running without parameters
 # from_dir = 'source_pic'
@@ -31,7 +31,7 @@ class Convertor():
             if not source_dir_exist:
                 dir_not_found_message = f'\n[ {self.from_dir} directory ] does not exist\n' \
                                         f'\nPlease enter right source folder name or check if exist.' \
-                                        f'\nNotice! Python script and source dir must be in on directory.\n'
+                                        f'\nNotice! Python script and source dir must be in one directory.\n'
                 print(dir_not_found_message)
                 return False
 
@@ -61,11 +61,11 @@ class Convertor():
                 t2 = time.time()
 
                 # verify that picture has .jpg format
-                regex = r".jpg+$"
-                is_jpg = re.search(regex, pic)
-                is_jpg_test = re.search(self.regex, pic)
+                # regex = r".jpg+$"
+                # is_jpg = re.search(regex, pic)
+                is_jpg = re.search(self.regex, pic)
 
-                if is_jpg_test is not None:
+                if is_jpg is not None:
                     # converting picture
                     im = Image.open(f'./{self.from_dir}/{pic}')
                     im.save(f'./{self.into_dir}/{pic[:-4]}.png')
@@ -76,7 +76,6 @@ class Convertor():
                 t3 = time.time()
                 total_pic = '%.2f' % (t3 - t2)
                 print(f'{pic} converted time: {total_pic} seconds')
-                return 'successfully converted all pictures'
 
 
             t1 = time.time()
@@ -92,5 +91,4 @@ class Convertor():
                 return 'file not found'
 
 
-
-# Convertor(from_dir, into_dir).img_converter()
+Convertor(from_dir, into_dir).img_converter()

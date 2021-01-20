@@ -30,7 +30,7 @@ def test_img_converter_success():
     into_dir = 'converted'
     result = jpg_to_png_convector.Convertor(from_dir, into_dir)
 
-    assert result.img_converter() == 'successfully converted all pictures'
+    assert result.img_converter() == None
 
 
 def test_img_converter_negative():
