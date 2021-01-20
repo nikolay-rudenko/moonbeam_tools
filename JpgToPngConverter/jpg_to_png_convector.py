@@ -2,6 +2,7 @@ import pathlib
 import re
 import time
 import sys
+import os
 
 from pathlib import Path
 from PIL import Image
@@ -11,11 +12,11 @@ from os import walk
 # into_dir = sys.argv[2]
 
 # Use it in case running without parameters
-from_dir = 'source_pic'
-into_dir = 'converted'
+# from_dir = 'source_pic'
+# into_dir = 'converted'
 
 
-class Convertor:
+class Convertor():
     def __init__(self, frm_folder, in_folder):
         self.from_dir = frm_folder
         self.into_dir = in_folder
@@ -25,14 +26,18 @@ class Convertor:
         converted_dir_exist = Path(self.into_dir).is_dir()
 
         if not source_dir_exist:
-            dir_not_found_message = 'please enter right from_folder name or check if exist'
+            dir_not_found_message = f'\n[ {self.from_dir} directory ] does not exist\n' \
+                                    f'\nPlease enter right source folder name or check if exist.' \
+                                    f'\nNotice! Python script and source dir must be in on directory.\n'
             print(dir_not_found_message)
+
             return dir_not_found_message
 
         elif source_dir_exist and not converted_dir_exist:
             pathlib.Path(f'./{self.into_dir}').mkdir(parents=True, exist_ok=True)
             print(f'\n{self.into_dir} folder created')
             return 'folder created'
+
         if source_dir_exist and converted_dir_exist:
             return True
 
@@ -66,5 +71,5 @@ class Convertor:
 
         print(f'\ntotal converted time {total_all_pictures} seconds')
 
-
-Convertor(from_dir, into_dir).imgConverter()
+#
+# Convertor(from_dir, into_dir).imgConverter()
