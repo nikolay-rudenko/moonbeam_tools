@@ -8,12 +8,12 @@ from PIL import Image
 from os import walk
 
 
-input_dir = sys.argv[1]
-output_dir = sys.argv[2]
-
 # Use it in case running without parameters
 # input_dir = 'source_pic'
 # output_dir = 'converted'
+
+input_dir = sys.argv[1]
+output_dir = sys.argv[2]
 
 
 class Convertor():
