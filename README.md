@@ -3,7 +3,8 @@ _This is repo with my favorite tools to solving problems using computation,
 algorithms and a variety of technologies._
 
 
-### JpgToPngConverter I/O 0.0.6
+
+### JpgToPngConverter 0.0.6
 This is simple python script for converting jpg pictures to png
 Script was tested with: python 3.9.1, pillow 8.1.0
 
