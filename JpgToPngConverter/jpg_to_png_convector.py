@@ -2,19 +2,18 @@ import pathlib
 import re
 import time
 import sys
-import os
 
 from pathlib import Path
 from PIL import Image
 from os import walk
 
 
-from_dir = sys.argv[1]
-into_dir = sys.argv[2]
+# from_dir = sys.argv[1]
+# into_dir = sys.argv[2]
 
 # Use it in case running without parameters
-# from_dir = 'source_pic'
-# into_dir = 'converted'
+from_dir = 'source_pic'
+into_dir = 'converted'
 
 
 class Convertor():
@@ -57,12 +56,11 @@ class Convertor():
             _, _, filenames = next(walk(f'./{self.from_dir}'))
 
             t0 = time.time()
+            print('\n')
             for pic in filenames:
                 t2 = time.time()
 
                 # verify that picture has .jpg format
-                # regex = r".jpg+$"
-                # is_jpg = re.search(regex, pic)
                 is_jpg = re.search(self.regex, pic)
 
                 if is_jpg is not None:
@@ -75,13 +73,13 @@ class Convertor():
 
                 t3 = time.time()
                 total_pic = '%.2f' % (t3 - t2)
-                print(f'{pic} converted time: {total_pic} seconds')
+                print(f'Converted... [ {pic} ] for {total_pic} seconds')
 
 
             t1 = time.time()
             total_all_pictures = '%.2f' % (t1 - t0)
 
-            print(f'\ntotal converted time {total_all_pictures} seconds')
+            print(f'\nTotal time: {total_all_pictures} seconds')
 
         except (FileNotFoundError, TypeError):
             if TypeError:

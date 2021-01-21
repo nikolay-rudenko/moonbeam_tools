@@ -48,12 +48,6 @@ def test_img_converter_exceptions():
 
     assert result.img_converter() == 'wrong type argument given'
 
-def test_img_converter_exceptions():
-    from_dir = 'source_pic'
-    into_dir = 2
-    result = jpg_to_png_convector.Convertor(from_dir, into_dir, None)
-
-    assert result.img_converter() == 'wrong type argument given'
 
 def test_img_converter_regex():
     from_dir = 'source_pic'
