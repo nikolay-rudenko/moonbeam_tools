@@ -4,7 +4,7 @@ algorithms and a variety of technologies._
 
 
 
-### JpgToPngConverter 0.0.6
+### JpgToPngConverter 
 This is simple python script for converting jpg pictures to png
 Script was tested with: python 3.9.1, pillow 8.1.0
 
@@ -17,3 +17,7 @@ All you need copy script in a folder what contain a source picture folder and co
 `into_folder_name` - second parameter
 
 if you not created into_folder, just type name like second parameter and python will create for you!
+
+### PdfWaterMarker 
+This is script that take one pdf file as an input, another pdf file as a watermark
+and create third one, with all pages watermarked 
