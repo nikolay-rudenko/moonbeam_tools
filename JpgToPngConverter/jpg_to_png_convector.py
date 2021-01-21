@@ -12,34 +12,34 @@ from os import walk
 # into_dir = sys.argv[2]
 
 # Use it in case running without parameters
-from_dir = 'source_pic'
-into_dir = 'converted'
+input_dir = 'source_pic'
+output_dir = 'converted'
 
 
 class Convertor():
-    def __init__(self, frm_folder, in_folder, regex=r".jpg+$"):
-        self.from_dir = frm_folder
-        self.into_dir = in_folder
+    def __init__(self, in_folder, out_folder, regex=r".jpg+$"):
+        self.input_dir = in_folder
+        self.output_dir = out_folder
         self.regex = regex
 
     def folder_creator(self):
         try:
-            source_dir_exist = Path(self.from_dir).is_dir()
-            converted_dir_exist = Path(self.into_dir).is_dir()
+            input_dir_exist = Path(self.input_dir).is_dir()
+            output_dir_exist = Path(self.output_dir).is_dir()
 
-            if not source_dir_exist:
-                dir_not_found_message = f'\n[ {self.from_dir} directory ] does not exist\n' \
+            if not input_dir_exist:
+                input_dir_not_found = f'\n[ {self.input_dir} directory ] does not exist\n' \
                                         f'\nPlease enter right source folder name or check if exist.' \
                                         f'\nNotice! Python script and source dir must be in one directory.\n'
-                print(dir_not_found_message)
+                print(input_dir_not_found)
                 return False
 
-            elif source_dir_exist and not converted_dir_exist:
-                pathlib.Path(f'./{self.into_dir}').mkdir(parents=True, exist_ok=True)
-                print(f'\n{self.into_dir} folder created')
+            elif input_dir_exist and not output_dir_exist:
+                pathlib.Path(f'./{self.output_dir}').mkdir(parents=True, exist_ok=True)
+                print(f'\n{self.output_dir} folder created')
                 return 'folder created'
 
-            if source_dir_exist and converted_dir_exist:
+            if input_dir_exist and output_dir_exist:
                 return True
 
         except TypeError:
@@ -53,7 +53,7 @@ class Convertor():
             self.folder_creator()
 
             # getting all the file names in folder
-            _, _, filenames = next(walk(f'./{self.from_dir}'))
+            _, _, filenames = next(walk(f'./{self.input_dir}'))
 
             t0 = time.time()
             print('\n')
@@ -65,8 +65,8 @@ class Convertor():
 
                 if is_jpg is not None:
                     # converting picture
-                    im = Image.open(f'./{self.from_dir}/{pic}')
-                    im.save(f'./{self.into_dir}/{pic[:-4]}.png')
+                    im = Image.open(f'./{self.input_dir}/{pic}')
+                    im.save(f'./{self.output_dir}/{pic[:-4]}.png', 'png')
                 else:
                     print(f'{pic} is not .jpg file')
                     return f'{pic} is not .jpg file'
@@ -89,4 +89,4 @@ class Convertor():
                 return 'file not found'
 
 
-Convertor(from_dir, into_dir).img_converter()
+Convertor(input_dir, output_dir).img_converter()
