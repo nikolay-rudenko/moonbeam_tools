@@ -21,3 +21,6 @@ if you not created into_folder, just type name like second parameter and python 
 ### PdfWaterMarker 
 This is script that take one pdf file as an input, another pdf file as a watermark
 and create third one, with all pages watermarked 
+
+### Email sender 
+This is script can send the email text, or html in email
