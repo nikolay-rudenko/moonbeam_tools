@@ -24,3 +24,7 @@ and create third one, with all pages watermarked
 
 ### Email sender 
 This is script can send the email text, or html in email
+
+### Password checker 
+The script that help you to check security of your password, 
+and check how many times password was hacked 
