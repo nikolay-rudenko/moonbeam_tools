@@ -25,8 +25,10 @@ This is script can send the email text, or html in email
 
 ### Password checker 
 The script that help you to check security of your password, 
-and check how many times password was hacked 
+and check how many times' your password was hacked 
 
 ### SendTextMessages
 Using twilio.rest api this script can send messages in watsapp and normal text messages in the phone
 
+### TwitterBot
+Ability to retweet, tweet, follow, search and do a lot more using twitter official api and tweepy library 
