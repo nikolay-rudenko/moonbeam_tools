@@ -27,6 +27,9 @@ This is script can send the email text, or html in email
 The script that help you to check security of your password, 
 and check how many times' your password was hacked 
 
+In script used SHA1 hashing and api.pwnedpasswords.com api to check your pass***
+by sending only first 5 digits of your hash pass
+
 ### SendTextMessages
 Using twilio.rest api this script can send messages in watsapp and normal text messages in the phone
 
