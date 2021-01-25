@@ -31,8 +31,6 @@ for tweet in tweepy.Cursor(api.search, search_string).items(numbers_of_tweets):
     except StopIteration:
         break
 
-
-
 # Bot that could follow back people on twitter
 # for follower in limit_handler(tweepy.Cursor(api.followers).items()):
 #     if follower.name == 'Olga C':
