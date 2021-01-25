@@ -2,8 +2,6 @@
 _This is repo with my favorite tools to solving problems using computation, 
 algorithms and a variety of technologies._
 
-
-
 ### JpgToPngConverter 
 This is simple python script for converting jpg pictures to png
 Script was tested with: python 3.9.1, pillow 8.1.0
@@ -28,3 +26,7 @@ This is script can send the email text, or html in email
 ### Password checker 
 The script that help you to check security of your password, 
 and check how many times password was hacked 
+
+### SendTextMessages
+Using twilio.rest api this script can send messages in watsapp and normal text messages in the phone
+
