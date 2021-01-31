@@ -9,9 +9,7 @@ Script was tested with: python 3.9.1, pillow 8.1.0
 All you need copy script in a folder what contain a source picture folder and converted picture folder, run script in terminal
 
 `py jpg_to_png_convector.py from_folder_name into_folder_name`
-
 `from_folder_name` - first parameter
-
 `into_folder_name` - second parameter
 
 if you not created into_folder, just type name like second parameter and python will create for you!
@@ -35,3 +33,7 @@ Using twilio.rest api this script can send messages in watsapp and normal text m
 
 ### TwitterBot
 Ability to retweet, tweet, follow, search and do a lot more using twitter official api and tweepy library 
+
+### HackerNewsScraper
+Can scrap hacker news pages and get the posts with title and links that has specific quantity of votes, 
+for example more than 500 or any other number. Project used requests and BeautifulSoup library
