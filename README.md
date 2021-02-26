@@ -28,7 +28,7 @@ and check how many times' your password was hacked
 In script used SHA1 hashing and api.pwnedpasswords.com api to check your pass***
 by sending only first 5 digits of your hash pass
 
-### SendTextMessages
+### twilio_cloud_messages_sender
 In this example I used Twilio Cloud Communications api. Using `twilio.rest` api this script can send messages in watsapp or phone text messages
 
 ### TwitterBot
