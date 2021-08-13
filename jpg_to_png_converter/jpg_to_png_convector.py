@@ -7,7 +7,6 @@ from pathlib import Path
 from PIL import Image
 from os import walk
 
-
 # Use it in case running without parameters
 # input_dir = 'source_pic'
 # output_dir = 'converted'
@@ -29,8 +28,8 @@ class Convertor():
 
             if not input_dir_exist:
                 input_dir_not_found = f'\n[ {self.input_dir} directory ] does not exist\n' \
-                                        f'\nPlease enter right source folder name or check if exist.' \
-                                        f'\nNotice! Python script and source dir must be in one directory.\n'
+                                      f'\nPlease enter right source folder name or check if exist.' \
+                                      f'\nNotice! Python script and source dir must be in one directory.\n'
                 print(input_dir_not_found)
                 return False
 
@@ -45,7 +44,6 @@ class Convertor():
         except TypeError:
             print('please enter the name of the folder in string format')
             return 'wrong data type'
-
 
     def img_converter(self):
 
@@ -74,7 +72,6 @@ class Convertor():
                 t3 = time.time()
                 total_pic = '%.2f' % (t3 - t2)
                 print(f'Converted... [ {pic} ] for {total_pic} seconds')
-
 
             t1 = time.time()
             total_all_pictures = '%.2f' % (t1 - t0)
