@@ -12,8 +12,13 @@ soup1 = BeautifulSoup(page1.text, 'html.parser')
 links1 = soup1.select('.storylink')
 subtext1 = soup1.select('.subtext')
 
-slink = links + links1
-ssubtext = subtext + subtext1
+page2 = requests.get('https://news.ycombinator.com/news?p=3')
+soup2 = BeautifulSoup(page2.text, 'html.parser')
+links2 = soup2.select('.storylink')
+subtext2 = soup2.select('.subtext')
+
+slink = links + links1 + links2
+ssubtext = subtext + subtext1 + subtext2
 
 
 def sort_story_by_votes(hnlist):
@@ -30,7 +35,7 @@ def create_custom_hn(links, subtext):
 
         if len(vote):
             points = int(vote[0].getText().replace(' points', ''))
-            if points > 100:
+            if points > 300:
                 hn.append({'title': title, 'link': href, 'votes': points})
 
     return sort_story_by_votes(hn)
