@@ -73,4 +73,4 @@ def create_custom_hn(links, subtext):
     return sort_story_by_votes(hn)
 
 
-pprint.pprint(create_custom_hn(slink, link_subtext_generator(1)))
+pprint.pprint(create_custom_hn(slink))
