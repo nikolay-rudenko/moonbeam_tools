@@ -20,6 +20,38 @@ subtext2 = soup2.select('.subtext')
 slink = links + links1 + links2
 ssubtext = subtext + subtext1 + subtext2
 
+def link_generator(quantity):
+    counter = 0
+    links_list = []
+    subtext_list = []
+
+    while counter < quantity:
+        page = requests.get(f'https://news.ycombinator.com/news?p={quantity}')
+        soup = BeautifulSoup(page.text, 'html.parser')
+        links = soup.select('.storylink')
+        subtext = soup.select('.subtext')
+        links_list.append(links)
+        subtext_list.append(subtext)
+        counter += 1
+
+    return links_list
+
+def subtext_generator(quantity):
+    counter = 0
+    links_list = []
+    subtext_list = []
+
+    while counter < quantity:
+        page = requests.get(f'https://news.ycombinator.com/news?p={quantity}')
+        soup = BeautifulSoup(page.text, 'html.parser')
+        links = soup.select('.storylink')
+        subtext = soup.select('.subtext')
+        links_list.append(links)
+        subtext_list.append(subtext)
+        counter += 1
+
+    return subtext_list
+
 
 def sort_story_by_votes(hnlist):
     return sorted(hnlist, key=lambda k: k['votes'], reverse=True)
@@ -41,4 +73,4 @@ def create_custom_hn(links, subtext):
     return sort_story_by_votes(hn)
 
 
-pprint.pprint(create_custom_hn(slink, ssubtext))
+pprint.pprint(create_custom_hn(slink, link_subtext_generator(1)))
