@@ -2,24 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 import pprint
 
-
-def subtext_generator(quantity):
-    counter = 0
-    links_list = []
-    subtext_list = []
-
-    while counter < quantity:
-        page = requests.get(f'https://news.ycombinator.com/news?p={quantity}')
-        soup = BeautifulSoup(page.text, 'html.parser')
-        links = soup.select('.storylink')
-        subtext = soup.select('.subtext')
-        links_list.append(links)
-        subtext_list.append(subtext)
-        counter += 1
-
-    return subtext_list
-
-
 def sort_story_by_votes(hnlist):
     return sorted(hnlist, key=lambda k: k['votes'], reverse=True)
 
@@ -58,8 +40,6 @@ def link_generator(quantity):
         counter += 1
 
     return links_list, subtext_list
-
-
 
 
 class Scrape_Hacker_News(object):
