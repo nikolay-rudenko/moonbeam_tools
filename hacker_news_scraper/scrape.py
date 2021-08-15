@@ -22,30 +22,36 @@ def create_custom_hn(links, subtext, votes=100):
     return sort_story_by_votes(hn)
 
 
-def link_generator(quantity):
-    links_list = []
-    subtext_list = []
-    counter = 1
 
-    while counter < quantity:
-        page = requests.get(f'https://news.ycombinator.com/news?p={counter}')
-
-        soup = BeautifulSoup(page.text, 'html.parser')
-        links = soup.select('.storylink')
-        links_list += links
-
-        subtext = soup.select('.subtext')
-        subtext_list += subtext
-
-        counter += 1
-
-    return links_list, subtext_list
 
 
 class Scrape_Hacker_News(object):
-    def __init__(self, page, votes):
+    def __init__(self, page, votes, quantity):
         self.page = page
         self.votes = votes
+        self.quantity = quantity
+
+    def link_generator(self):
+        links_list = []
+        subtext_list = []
+        counter = 1
+
+        while counter < self.quantity:
+            page = requests.get(f'https://news.ycombinator.com/news?p={counter}')
+
+            soup = BeautifulSoup(page.text, 'html.parser')
+            links = soup.select('.storylink')
+            links_list += links
+
+            subtext = soup.select('.subtext')
+            subtext_list += subtext
+
+            counter += 1
+
+        return links_list, subtext_list
+
+sc = Scrape_Hacker_News(page=3,votes=100, quantity=3)
 
 
-pprint.pprint(create_custom_hn(link_generator(3)[0], link_generator(3)[1], votes=500))
+
+pprint.pprint(create_custom_hn(sc.link_generator()[0], sc.link_generator()[1], votes=sc.votes))
