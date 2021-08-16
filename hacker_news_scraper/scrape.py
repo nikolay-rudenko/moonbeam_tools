@@ -22,9 +22,6 @@ def create_custom_hn(links, subtext, votes=100):
     return sort_story_by_votes(hn)
 
 
-
-
-
 class Scrape_Hacker_News(object):
     def __init__(self, page, votes, quantity):
         self.page = page
@@ -50,8 +47,6 @@ class Scrape_Hacker_News(object):
 
         return links_list, subtext_list
 
-sc = Scrape_Hacker_News(page=3,votes=100, quantity=3)
-
-
+sc = Scrape_Hacker_News(page=3,votes=300, quantity=3)
 
 pprint.pprint(create_custom_hn(sc.link_generator()[0], sc.link_generator()[1], votes=sc.votes))
