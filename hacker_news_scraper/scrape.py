@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pprint
-
+# scraper for best news 
 
 def sort_story_by_votes(hnlist):
     return sorted(hnlist, key=lambda k: k['votes'], reverse=True)
